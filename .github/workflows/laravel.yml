@@ -8,9 +8,7 @@ on:
 
 jobs:
   laravel-tests:
-
     runs-on: ubuntu-latest
-
     steps:
     - uses: shivammathur/setup-php@15c43e89cdef867065b0213be354c2841860869e
       with:
@@ -35,3 +33,17 @@ jobs:
         DB_CONNECTION: sqlite
         DB_DATABASE: database/database.sqlite
       run: vendor/bin/phpunit
+
+  laravel-deploy:
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+    - uses: actions/checkout@v3
+    - name: Deploy
+      env:
+        HOST_NAME: ${{ secrets.HOST_NAME }}
+        USER_NAME: ${{ secrets.USER_NAME }}
+        PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
+      run: |
+        echo "${PRIVATE_KEY}" > private_key && chmod 600 private_key
+        ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOST_NAME} 'cd app && git pull'
