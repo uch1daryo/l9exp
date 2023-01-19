@@ -14,8 +14,13 @@ jobs:
       with:
         php-version: '8.0'
     - uses: actions/checkout@v3
+    - uses: actions/setup-node@v3
+      with:
+        node-version: 18.13.0
     - name: Copy .env
       run: php -r "file_exists('.env') || copy('.env.example', '.env');"
+    - name: Install npm packages
+      run: npm install
     - name: Update composer
       run: composer update
     - name: Install Dependencies
