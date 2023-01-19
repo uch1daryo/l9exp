@@ -20,7 +20,9 @@ jobs:
     - name: Copy .env
       run: php -r "file_exists('.env') || copy('.env.example', '.env');"
     - name: Install npm packages
-      run: npm install
+      run: |
+        npm install
+        npm run build
     - name: Update composer
       run: composer update
     - name: Install Dependencies
