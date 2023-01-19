@@ -3,9 +3,10 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    @vite('resources/css/app.css')
     <title>Home</title>
 </head>
 <body class="antialiased">
-    <p>Hello, Home page!</p>
+    <p class="text-3xl font-bold underline">Hello, Home page!</p>
 </body>
 </html>
