@@ -20,7 +20,7 @@
           </li>
           @foreach($facilityArray as $facility)
           <li class="nav-item">
-            <a class="nav-link" href="/facilities/{{ $facility['id'] }}">{{ $facility['name'] }}</a>
+            <a class="nav-link" href="{{ url('') }}/facilities/{{ $facility['id'] }}">{{ $facility['name'] }}</a>
           </li>
           @endforeach
         </ul>
